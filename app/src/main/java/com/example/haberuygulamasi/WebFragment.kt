@@ -45,6 +45,11 @@ class WebFragment : Fragment(R.layout.fragment_web) {
             if (viewModel.favoriMi.value == true) viewModel.HaberSil()
             else viewModel.HaberEkle()
         }
+        btnCopy.setOnClickListener { 
+            val url = viewModel.article?.url
+            if (url.isNullOrBlank().not())
+                copyClipboard(url!!)
+        }
 
     }
 
