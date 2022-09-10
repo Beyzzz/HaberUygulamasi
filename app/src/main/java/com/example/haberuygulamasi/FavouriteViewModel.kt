@@ -1,12 +1,8 @@
 package com.example.haberuygulamasi
 
-import android.app.Application
 import androidx.lifecycle.*
 import com.example.haberuygulamasi.data.Article
-import com.example.haberuygulamasi.data.HaberArticle
-import com.example.haberuygulamasi.data.HaberDatabase
 import com.example.haberuygulamasi.data.HaberlerRepostory
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FavouriteViewModel(
