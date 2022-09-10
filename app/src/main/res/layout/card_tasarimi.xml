@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/satirCardView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/haberImageView"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                tools:srcCompat="@tools:sample/avatars" android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/textViewHaberBaslık"
+                android:layout_width="166dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center" />
+
+            <ImageButton
+                android:id="@+id/buttonKaydet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_save_24" />
+
+            <ImageButton
+                android:id="@+id/favoriButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/favori_cerceve" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
