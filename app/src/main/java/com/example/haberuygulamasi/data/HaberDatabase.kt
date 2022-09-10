@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [HaberArticle::class], version = 1)
+@Database(entities = [Article::class], version = 1)
 abstract class HaberDatabase : RoomDatabase(){
-    abstract fun getDaoInterface() : DaoInterface
+    abstract fun getDaoInterface() : ArticleDao
     companion object{
         private var INSTANCE:
                 HaberDatabase?=null

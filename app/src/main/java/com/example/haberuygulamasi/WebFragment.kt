@@ -4,36 +4,47 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.webkit.WebView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.example.haberuygulamasi.data.HaberDatabase
+import com.example.haberuygulamasi.data.HaberlerRepostory
+import kotlinx.android.synthetic.main.fragment_web.*
 
 
-class WebFragment : Fragment() {
+class WebFragment : Fragment(R.layout.fragment_web) {
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_web, container, false)
+    private val bundle: WebFragmentArgs by navArgs()
+    private lateinit var viewModel: WebViewModel
+    private val repository by lazy {
+        HaberlerRepostory(HaberDatabase.getDataBase(requireContext()).getDaoInterface())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // viewModel oluşturmak için kullnaıyor
+        viewModel = ViewModelProvider(
+            this,
+            WebViewModelFactory(repository)
+        ).get(WebViewModel::class.java)
+     //observele live dataları takip ettirmek, ekran açıkken takip eder kapalıysa bırakır
+        viewModel.favoriMi.observe(viewLifecycleOwner) { isFav ->
+            val icon = if (isFav) R.drawable.favori else R.drawable.favori_cerceve
+            btnFav.setImageResource(icon)
+        }
 
-        val bundle: WebFragmentArgs by navArgs()
-        val gelenUrl = bundle.url
+        viewModel.article = bundle.article
+        viewModel.checkFavouritesStatus()
+        // Haberin favori durumunu kontrol etmek
 
-        val webView = view.findViewById<WebView>(R.id.web)
-        webView?.settings?.javaScriptEnabled = true
-        webView?.loadUrl(gelenUrl)
+        web?.settings?.javaScriptEnabled = true
+        web?.loadUrl(viewModel.article?.url ?: "")
+        btnFav.setOnClickListener {
+            if (viewModel.favoriMi.value == true) viewModel.HaberSil()
+            else viewModel.HaberEkle()
+        }
 
     }
 

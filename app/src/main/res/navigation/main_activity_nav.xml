@@ -16,16 +16,22 @@
     </fragment>
     <fragment
         android:id="@+id/ikinciFragment"
-        android:name="com.example.haberuygulamasi.data.IkinciFragment"
+        android:name="com.example.haberuygulamasi.IkinciFragment"
         android:label="fragment_ikinci"
-        tools:layout="@layout/fragment_ikinci" />
+        tools:layout="@layout/fragment_ikinci" >
+        <action
+            android:id="@+id/action_ikinciFragment_to_webFragment"
+            app:destination="@id/webFragment" />
+    </fragment>
     <fragment
         android:id="@+id/webFragment"
         android:name="com.example.haberuygulamasi.WebFragment"
         android:label="fragment_web"
         tools:layout="@layout/fragment_web" >
         <argument
-            android:name="url"
-            app:argType="string" />
+            android:name="article"
+            app:nullable="true"
+            app:argType="com.example.haberuygulamasi.data.Article"
+            android:defaultValue="@null"/>
     </fragment>
 </navigation>

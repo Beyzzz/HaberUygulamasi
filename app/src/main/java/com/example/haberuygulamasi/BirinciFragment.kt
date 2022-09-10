@@ -2,9 +2,7 @@ package com.example.haberuygulamasi
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -18,28 +16,15 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class BirinciFragment : Fragment() {
+class BirinciFragment : Fragment(R.layout.fragment_birinci) {
 
-
-    private lateinit var myAdapter: MyAdapter
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: ViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_birinci, container, false)
-    }
+    private val adapter by lazy { ArticleAdapter(::onItemClick) }
+    //private lateinit var viewModel: ViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.rv)
-        recyclerView.setHasFixedSize(true)
+        rv.adapter = adapter
         getMyData()
-
-
     }
 
     fun getMyData() {
@@ -52,28 +37,21 @@ class BirinciFragment : Fragment() {
         retrofitData.enqueue(object : Callback<Haberler?> {
             override fun onResponse(call: Call<Haberler?>, response: Response<Haberler?>) {
                 val responseBody = response.body()!!.articles
-
-
-                myAdapter = MyAdapter(responseBody, ::onItemClick )
-                rv.adapter = myAdapter
+                adapter.setData(responseBody)
             }
 
             override fun onFailure(call: Call<Haberler?>, t: Throwable) {
                 println("hata var")
             }
-
         })
     }
 
     fun onItemClick(article: Article) {
         Toast.makeText(context, article.title, Toast.LENGTH_SHORT).show()
         findNavController().navigate(
-            BirinciFragmentDirections.action(article.url)
-        // BirinciFragmentDirections.webViewAction(article.url)
+            BirinciFragmentDirections.action(article)
         )
-
     }
-
 
 }
 

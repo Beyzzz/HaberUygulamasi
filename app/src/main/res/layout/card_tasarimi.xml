@@ -25,12 +25,14 @@
 
             <TextView
                 android:id="@+id/textViewHaberBaslık"
-                android:layout_width="166dp"
-                android:layout_height="32dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center" />
 
             <ImageButton
                 android:id="@+id/buttonKaydet"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_baseline_save_24" />
@@ -38,6 +40,7 @@
             <ImageButton
                 android:id="@+id/favoriButton"
                 android:layout_width="wrap_content"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/favori_cerceve" />
 
