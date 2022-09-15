@@ -21,5 +21,4 @@ interface ArticleDao {
     // aynı ismimde favori haber var ise o haber favoridir yoksa favori değildir
     @Query("SELECT * FROM HaberArticle WHERE title=:title")
     suspend fun favorriMi(title: String?): Article?
-
 }

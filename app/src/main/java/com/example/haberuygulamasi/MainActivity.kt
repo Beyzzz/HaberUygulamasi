@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
         // Bottom navla navhost fragmentı bağlıyoruz
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         NavigationUI.setupWithNavController(bottomNav,navHostFragment.navController)
-        // bottom navigasyonumla navhost fragmentımı birleştiriyorum
+
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.webFragment) {
@@ -39,11 +39,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
         menuInflater.inflate(R.menu.menu_arama,menu)
         val item = menu.findItem(R.id.actionAra)
         val searchView = item.actionView as SearchView
-        // item ı arama sınıfından bir nesneye dönüştürdüm as diyerek
         searchView.setOnQueryTextListener(this)
         // Arama işlemini tetikledik.
         return super.onCreateOptionsMenu(menu)
-
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {

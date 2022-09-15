@@ -54,7 +54,7 @@ class BirinciFragment : Fragment(R.layout.fragment_birinci) {
     }
 
 }
-
+//adapter.setData(responseBody)
 
 
 

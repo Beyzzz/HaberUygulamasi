@@ -8,13 +8,10 @@ import kotlinx.coroutines.launch
 class WebViewModel(
     private val repostory: HaberlerRepostory
 ) : ViewModel() {
-
-    // öncek ekradnan parametre olarak gelen haber
+    // önceki ekrandan parametre olarak gelen haber
     var article: Article? = null
-    // o haberin favori oluğ olmadığı bilgisi
+    // o haberin favori olup olmadığı bilgisi
     val favoriMi = MutableLiveData<Boolean>()
-
-
     // haberin favori olup olmadığını kontrol eden fonksion
     fun checkFavouritesStatus(){
         article ?: return
@@ -22,7 +19,6 @@ class WebViewModel(
             favoriMi.value = repostory.favorriMi(article!!)
         }
     }
-
     // favroiye ekleme
     fun HaberEkle() {
         article ?: return

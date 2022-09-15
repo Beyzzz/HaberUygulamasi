@@ -25,6 +25,6 @@ data class Article(
     val title: String?,
     @ColumnInfo(name = "url")
     val url: String?,
-    @ColumnInfo(name = " urlToImage")
+    @ColumnInfo(name = "urlToImage")
     val urlToImage: String?
 ): Parcelable

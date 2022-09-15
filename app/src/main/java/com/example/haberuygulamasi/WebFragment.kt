@@ -24,27 +24,25 @@ class WebFragment : Fragment(R.layout.fragment_web) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // viewModel oluşturmak için kullnaıyor
-        viewModel = ViewModelProvider(
-            this,
-            WebViewModelFactory(repository)
-        ).get(WebViewModel::class.java)
+        // viewModel oluşturmak için kullınaıyor
+        viewModel = ViewModelProvider(this, WebViewModelFactory(repository)).get(WebViewModel::class.java)
      //observele live dataları takip ettirmek, ekran açıkken takip eder kapalıysa bırakır
         viewModel.favoriMi.observe(viewLifecycleOwner) { isFav ->
             val icon = if (isFav) R.drawable.favori else R.drawable.favori_cerceve
             btnFav.setImageResource(icon)
         }
-
         viewModel.article = bundle.article
         viewModel.checkFavouritesStatus()
         // Haberin favori durumunu kontrol etmek
 
         web?.settings?.javaScriptEnabled = true
         web?.loadUrl(viewModel.article?.url ?: "")
+
         btnFav.setOnClickListener {
             if (viewModel.favoriMi.value == true) viewModel.HaberSil()
             else viewModel.HaberEkle()
         }
+
         btnCopy.setOnClickListener { 
             val url = viewModel.article?.url
             if (url.isNullOrBlank().not())

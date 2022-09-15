@@ -10,21 +10,7 @@ class FavouriteViewModel(
 ) : ViewModel() {
 
     val TumHaberleriGetir: LiveData<List<Article>> = repostory.TumHaberleriGetir
-
-    fun HaberEkle(haberArticle: Article) {
-        viewModelScope.launch {
-            repostory.HaberEkle(haberArticle)
-        }
-    }
-
-    fun HaberSil(haberArticle: Article) {
-        viewModelScope.launch {
-            repostory.HaberSil(haberArticle)
-        }
-    }
 }
-
-
 @Suppress("UNCHECKED_CAST")
 class FavouriteViewModelFactory constructor(private val repository: HaberlerRepostory): ViewModelProvider.Factory {
 
@@ -36,3 +22,5 @@ class FavouriteViewModelFactory constructor(private val repository: HaberlerRepo
         }
     }
 }
+
+

@@ -2,7 +2,6 @@ package com.example.haberuygulamasi.data
 
 import androidx.lifecycle.LiveData
 
-// view modelden erişebilmek için repostory oluşturmamız gerekir.
 class HaberlerRepostory(private val daoInterface: ArticleDao) {
 
     val TumHaberleriGetir: LiveData<List<Article>> = daoInterface.TumHaberleriGetir()
@@ -22,3 +21,7 @@ class HaberlerRepostory(private val daoInterface: ArticleDao) {
 
 
 }
+
+
+
+//// view modele erişebilmek için repostory oluşturmamız gerekir.

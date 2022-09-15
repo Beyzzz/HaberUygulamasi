@@ -39,7 +39,4 @@ class IkinciFragment : Fragment(R.layout.fragment_ikinci) {
         findNavController().navigate(
             IkinciFragmentDirections.actionIkinciFragmentToWebFragment(article)
         )
-    }
-
-
-}
+    } }
